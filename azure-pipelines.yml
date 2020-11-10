@@ -8,7 +8,7 @@ trigger:
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'b25b322f-7ed6-4adb-a19c-ebb6de0c8c89'
+  serviceConnectionToAzure: 'SC1'
   
   # Web app name
   webAppName: 'appSvc-hg110920'
@@ -78,7 +78,7 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App : appSvc-hg110920'
             inputs:
-              azureSubscription: $(azureSubscription)
+              azureSubscription: $(serviceConnectionToAzure)
               appName: $(webAppName)
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               slotName: $(slotName)
